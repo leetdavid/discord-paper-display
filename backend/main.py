@@ -40,12 +40,12 @@ async def render_text(author, text):
         draw.text((10, 50 + offset), line, font=large_font, fill=0)
         offset += large_font.getsize(line)[1]
     
-    image = image.transpose(Image.ROTATE_90)
+    # image = image.transpose(Image.ROTATE_90)
     draw_image(image)
 
 @app.get('/image')
 async def render_image():
     image = Image.open('in.jpg')
     image = image.resize((epd.width, epd.height))
-    image = image.transpose(Image.ROTATE_90)
+    # image = image.transpose(Image.ROTATE_90)
     draw_image(image)
