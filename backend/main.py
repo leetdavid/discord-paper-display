@@ -29,7 +29,7 @@ author_box_height = int(author_box_height)
 author_text_size = int(author_text_size)
 author_text_offset = int(author_text_offset)
 
-text_char_break_width = 18
+text_char_break_width = 24
 
 author_font = ImageFont.truetype(
     '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
