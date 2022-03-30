@@ -25,6 +25,10 @@ author_box_height = y_ratio * h
 author_text_size = text_size_ratio * author_box_height
 author_text_offset = (1 - text_size_ratio) * author_box_height
 
+author_box_height = int(author_box_height)
+author_text_size = int(author_text_size)
+author_text_offset = int(author_text_offset)
+
 small_font = ImageFont.truetype(
     '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
     author_text_size
