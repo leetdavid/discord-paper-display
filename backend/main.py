@@ -23,11 +23,13 @@ text_size_ratio = 0.8
 
 author_box_height = y_ratio * h
 author_text_size = text_size_ratio * author_box_height
-author_text_offset = (1 - text_size_ratio) * author_box_height
+author_text_offset = (1 - text_size_ratio) * author_box_height - 3
 
 author_box_height = int(author_box_height)
 author_text_size = int(author_text_size)
 author_text_offset = int(author_text_offset)
+
+text_char_break_width = 18
 
 small_font = ImageFont.truetype(
     '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
@@ -54,7 +56,7 @@ async def render_text(author, text):
               f'{author}', font=small_font, fill=255)
 
     offset = 0
-    for line in textwrap.wrap(text, width=15):
+    for line in textwrap.wrap(text, width=text_char_break_width):
         draw.text((author_text_offset, author_box_height + author_text_offset + offset),
                   line, font=large_font, fill=0)
         offset += large_font.getsize(line)[1]
