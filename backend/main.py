@@ -66,7 +66,7 @@ async def render_text(author, text):
 
 @app.get('/image')
 async def render_image():
-    image = Image.open('in.jpg')
+    image = Image.open('../frontend/in.jpg')
     image = image.resize((w, h))
     image = image.transpose(Image.ROTATE_270)
     draw_image(image)

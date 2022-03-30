@@ -1,0 +1,24 @@
+{
+  "name": "discord-paper-display",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leetdavid/discord-paper-display.git"
+  },
+  "author": "leetdavid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leetdavid/discord-paper-display/issues"
+  },
+  "homepage": "https://github.com/leetdavid/discord-paper-display#readme",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "jquery": "^3.6.0",
+    "jsdom": "^19.0.0"
+  }
+}
