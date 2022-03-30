@@ -25,14 +25,19 @@ def draw_image(image, epd=epd):
 
 @app.get('/text')
 async def render_text(author, text):
-    image = Image.new('L', (epd.width, epd.height), 255)
+
+    w = epd.height
+    h = epd.width
+
+
+    image = Image.new('L', (w, h), 255)
     draw = ImageDraw.Draw(image)
 
     y_ratio = 0.227
-    y_cutoff_height = int(y_ratio * epd.height)
+    y_cutoff_height = int(y_ratio * h)
 
     # Author Box
-    draw.rectangle((0, 0, epd.width, y_cutoff_height), fill=0)
+    draw.rectangle((0, 0, w, y_cutoff_height), fill=0)
     draw.text((10, 10), f'{author}', font=small_font, fill=255)
 
     offset = 0
