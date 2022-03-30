@@ -10,7 +10,7 @@ const fs = require('fs')
 const token = process.argv.slice(2)[0];
 const botId = process.argv.slice(2)[1];
 
-backendUrl = 'http://localhost:8000'
+backendUrl = 'http://127.0.0.1:8000'
 
 client.login(token);
 
