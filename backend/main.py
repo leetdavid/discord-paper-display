@@ -19,7 +19,7 @@ app.add_middleware(
 w = epd.height
 h = epd.width
 y_ratio = 0.227
-text_size_ratio = 0.9
+text_size_ratio = 0.8
 
 author_box_height = int(y_ratio * h)
 author_text_size = int(text_size_ratio * author_box_height)
@@ -51,7 +51,8 @@ async def render_text(author, text):
 
     offset = 0
     for line in textwrap.wrap(text, width=15):
-        draw.text((10, 50 + offset), line, font=large_font, fill=0)
+        draw.text((author_text_offset, author_box_height + author_text_offset + offset),
+                  line, font=large_font, fill=0)
         offset += large_font.getsize(line)[1]
     
     # image = image.transpose(Image.ROTATE_90)
