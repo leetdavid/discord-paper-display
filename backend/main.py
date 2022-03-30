@@ -21,9 +21,9 @@ h = epd.width
 y_ratio = 0.227
 text_size_ratio = 0.8
 
-author_box_height = int(y_ratio * h)
-author_text_size = int(text_size_ratio * author_box_height)
-author_text_offset = int((1 - text_size_ratio) * author_box_height)
+author_box_height = y_ratio * h
+author_text_size = text_size_ratio * author_box_height
+author_text_offset = (1 - text_size_ratio) * author_box_height
 
 small_font = ImageFont.truetype(
     '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
