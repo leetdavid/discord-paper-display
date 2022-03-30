@@ -31,12 +31,12 @@ author_text_offset = int(author_text_offset)
 
 text_char_break_width = 18
 
-small_font = ImageFont.truetype(
+author_font = ImageFont.truetype(
     '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
     author_text_size
 )
 
-large_font = ImageFont.truetype(
+text_font = ImageFont.truetype(
     '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
     int(0.8 * author_text_size)
 )
@@ -53,13 +53,13 @@ async def render_text(author, text):
     # Author Box
     draw.rectangle((0, 0, w, author_box_height), fill=0)
     draw.text((author_text_offset, author_text_offset),
-              f'{author}', font=small_font, fill=255)
+              f'{author}', font=author_font, fill=255)
 
     offset = 0
     for line in textwrap.wrap(text, width=text_char_break_width):
         draw.text((author_text_offset, author_box_height + author_text_offset + offset),
-                  line, font=large_font, fill=0)
-        offset += large_font.getsize(line)[1]
+                  line, font=text_font, fill=0)
+        offset += text_font.getsize(line)[1]
     
     # image = image.transpose(Image.ROTATE_90)
     draw_image(image)
