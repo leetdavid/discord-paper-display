@@ -16,8 +16,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-small_font = ImageFont.truetype('/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf', 20)
-large_font = ImageFont.truetype('/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf', 27)
+w = epd.height
+h = epd.width
+y_ratio = 0.227
+text_size_ratio = 0.9
+
+author_box_height = int(y_ratio * h)
+author_text_size = int(text_size_ratio * author_box_height)
+author_text_offset = int((1 - text_size_ratio) * author_box_height)
+
+small_font = ImageFont.truetype(
+    '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
+    author_text_size
+)
+
+large_font = ImageFont.truetype(
+    '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
+    int(author_text_size * 1.2)
+)
 
 def draw_image(image, epd=epd):
     epd.prepare()
@@ -25,20 +41,13 @@ def draw_image(image, epd=epd):
 
 @app.get('/text')
 async def render_text(author, text):
-
-    w = epd.height
-    h = epd.width
-
-
     image = Image.new('L', (w, h), 255)
     draw = ImageDraw.Draw(image)
 
-    y_ratio = 0.227
-    y_cutoff_height = int(y_ratio * h)
-
     # Author Box
-    draw.rectangle((0, 0, w, y_cutoff_height), fill=0)
-    draw.text((10, 10), f'{author}', font=small_font, fill=255)
+    draw.rectangle((0, 0, w, author_box_height), fill=0)
+    draw.text((author_text_offset, author_text_offset),
+              f'{author}', font=small_font, fill=255)
 
     offset = 0
     for line in textwrap.wrap(text, width=15):
