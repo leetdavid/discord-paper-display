@@ -9,3 +9,8 @@ except EPDNotFoundError:
     sys.exit(1)
 
 epd.prepare()
+
+# Fix Override
+def c():
+    epd._device.Clear(0xFF)
+epd.clear = c

@@ -25,7 +25,7 @@ def draw_image(image, epd=epd):
 
 @app.get('/text')
 async def render_text(author, text):
-    image = Image.new('1', (epd.width, epd.height), 255)
+    image = Image.new('L', (epd.width, epd.height), 255)
     draw = ImageDraw.Draw(image)
 
     y_ratio = 0.227
@@ -40,12 +40,12 @@ async def render_text(author, text):
         draw.text((10, 50 + offset), line, font=large_font, fill=0)
         offset += large_font.getsize(line)[1]
     
-    # image = image.transpose(Image.ROTATE_90)
+    image = image.transpose(Image.ROTATE_90)
     draw_image(image)
 
 @app.get('/image')
 async def render_image():
     image = Image.open('in.jpg')
     image = image.resize((epd.width, epd.height))
-    # image = image.transpose(Image.ROTATE_90)
+    image = image.transpose(Image.ROTATE_90)
     draw_image(image)
