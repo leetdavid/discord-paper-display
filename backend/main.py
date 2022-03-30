@@ -38,7 +38,7 @@ small_font = ImageFont.truetype(
 
 large_font = ImageFont.truetype(
     '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
-    int(author_text_size * 1.2)
+    author_text_size
 )
 
 def draw_image(image, epd=epd):
