@@ -67,6 +67,6 @@ async def render_text(author, text):
 @app.get('/image')
 async def render_image():
     image = Image.open('in.jpg')
-    image = image.resize((epd.width, epd.height))
-    # image = image.transpose(Image.ROTATE_90)
+    image = image.resize((w, h))
+    image = image.transpose(Image.ROTATE_90)
     draw_image(image)
