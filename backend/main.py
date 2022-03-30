@@ -16,9 +16,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-smallFont = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSansBold.ttf', 20)
-largeFont = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSansBold.ttf', 27)
-
+small_font = ImageFont.truetype('/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf', 20)
+large_font = ImageFont.truetype('/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf', 27)
 
 def draw_image(image, epd=epd):
     epd.prepare()
@@ -29,8 +28,24 @@ async def render_text(author, text):
     image = Image.new('1', (epd.width, epd.height), 255)
     draw = ImageDraw.Draw(image)
 
-    # Top "Author Said" Box
-    draw.rectangle((0, 0, epd.width, int(0.227 * epd.height)), fill=0)
-    draw.text((10, 10), author, font=smallFont, fill=255)
+    y_ratio = 0.227
+    y_cutoff_height = int(y_ratio * epd.height)
 
+    # Author Box
+    draw.rectangle((0, 0, epd.width, y_cutoff_height), fill=0)
+    draw.text((10, 10), f'{author}', font=small_font, fill=255)
+
+    offset = 0
+    for line in textwrap.wrap(text, width=15):
+        draw.text((10, 50 + offset), line, font=large_font, fill=0)
+        offset += large_font.getsize(line)[1]
     
+    # image = image.transpose(Image.ROTATE_90)
+    draw_image(image)
+
+@app.get('/image')
+async def render_image():
+    image = Image.open('in.jpg')
+    image = image.resize((epd.width, epd.height))
+    # image = image.transpose(Image.ROTATE_90)
+    draw_image(image)
