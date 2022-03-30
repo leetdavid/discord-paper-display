@@ -68,5 +68,5 @@ async def render_text(author, text):
 async def render_image():
     image = Image.open('in.jpg')
     image = image.resize((w, h))
-    image = image.transpose(Image.ROTATE_90)
+    image = image.transpose(Image.ROTATE_270)
     draw_image(image)
