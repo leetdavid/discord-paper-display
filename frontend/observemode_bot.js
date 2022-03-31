@@ -20,11 +20,13 @@ client.on("messageCreate", async message => {
 
   if (message.attachments.size === 1) {
     message.attachments.forEach(item => {
-      const imgUrl = item.url.toLowerCase();
-      if(imgUrl.endswith('jpg') || imgUrl.endswith('jpeg') || imgUrl.endsWith('png')) {
+
+      if(item.url.match(/(?:pn|jpe?)g$/gmi).length > 0) {
+
+      // if(imgUrl.endswith('jpg') || imgUrl.endswith('jpeg') || imgUrl.endsWith('png')) {
         const file = fs.createWriteStream(`/tmp/discord_display_image.jpg`);
         
-        https.get(item.url, function(response) {
+        https.get(item.url, (response) => {
           response.pipe(file);
           file.on('finish', () => {
             file.close(() => {
