@@ -18,10 +18,10 @@ client.on("messageCreate", async message => {
 
   console.log(message);
 
-  if (message.content === "image" && message.attachments.size === 1) {
-    console.log('image detected')
+  if (message.attachments.size === 1) {
     message.attachments.forEach(item => {
-      if(item.url.endswith('jpg') || item.url.endswith('jpeg') || item.url.endsWith('png')) {
+      const imgUrl = item.url.toLowerCase();
+      if(imgUrl.endswith('jpg') || imgUrl.endswith('jpeg') || imgUrl.endsWith('png')) {
         const file = fs.createWriteStream(`/tmp/discord_display_image.jpg`);
         
         https.get(item.url, function(response) {
