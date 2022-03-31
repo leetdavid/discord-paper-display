@@ -38,7 +38,7 @@ client.on("messageCreate", async message => {
         message.attachments.forEach(item => {
             if (item.url.endsWith("jpg") || item.url.endsWith("jpeg") || item.url.endsWith("png")) {
                 message.react("⏱️")
-                const file = fs.createWriteStream(`${__dirname}/in.jpg`);
+                const file = fs.createWriteStream(`/tmp/in.jpg`);
                 https.get(item.url, function (response) {
                     response.pipe(file);
                     file.on('finish', function () {
