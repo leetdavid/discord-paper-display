@@ -66,7 +66,7 @@ async def render_text(author, text):
 
 @app.get('/image')
 async def render_image():
-    image = Image.open('/tmp/discord_image.jpg')
+    image = Image.open('/tmp/discord_display_image.jpg')
     image = image.resize((w, h))
     image = image.transpose(Image.ROTATE_270)
     draw_image(image)
