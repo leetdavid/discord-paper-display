@@ -16,7 +16,7 @@ client.login(token);
 
 client.on("messageCreate", async message => {
 
-  console.log(message.content);
+  console.log(message);
 
   if (message.content === "image" && message.attachments.size === 1) {
     console.log('image detected')
